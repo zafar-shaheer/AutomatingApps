@@ -1,0 +1,99 @@
+import pyautogui
+import time
+import os
+def automate(ipad, press, check):  # function that does all the automation
+    pyautogui.moveTo(x=404, y=71)
+    pyautogui.click()
+    pyautogui.press('backspace', presses=20)
+    pyautogui.write(ipad , interval=0.5)  # ip address being entered
+    time.sleep(5)
+    pyautogui.moveTo(x=1282, y=64)
+    pyautogui.click()  # scan starting
+    time.sleep(240)  # set time before giving
+    pyautogui.moveTo(x=697, y=432)  # cursor comes to the center of te screen
+    time.sleep(1)
+    time.sleep(1)
+    pyautogui.hotkey('alt', 'tab', interval='0.5')
+    os.system('cls')
+    print("SELECT THE LOCATION TO SAVE WHEN NEEDED")
+    time.sleep(5)
+    pyautogui.hotkey('alt', 'tab', interval='0.5')
+    pyautogui.hotkey('ctrl', 's', interval='0.8')  # saving the results
+    if check == 1:  # when the first run is saved
+        time.sleep(40)
+        time.sleep(5)
+        pyautogui.write(ipad, interval=0.2)
+        time.sleep(5)
+        pyautogui.press('enter', presses=1)
+    else:  # after the first run this block will be executed
+        time.sleep(1)
+        pyautogui.press('down', presses=press * 5 , interval=0.5)  # moving down the drop down
+        pyautogui.press('tab', presses=2 , interval=0.5)  # moving the selection to "SAVE"
+        pyautogui.press('enter', presses=1)
+        pyautogui.write(ipad, interval=0.2)  # writing ip address as the name of file
+        time.sleep(5)
+        pyautogui.press('enter', presses=1)
+def loc():
+    print("Location of Nmap - Zenmap GUI Shortcut on Desktop:\n"
+          "-Right Click On the Shortcut Icon on Desktop of Nmap - Zenmap GUI\n"
+          "-Click on properties\n"
+          "-Look for the General Tab\n"
+          "-Copy and Paste the location from there")
+def openfile(path):  # function to openfile
+    try:
+        os.startfile(path)
+    except Exception as e:
+        print(e)
+if __name__ == '__main__':
+    naam = input("Your Name: ")
+    print("Hello " , naam)
+    time.sleep(5)
+    input("PRESS 'ENTER' TO PROCEED")
+    time.sleep(2)
+    os.system('cls')
+    loc()
+    time.sleep(5)
+    path_1 = input("Enter the location of Nmap - Zenmap GUI Shortcut on Desktop:")  # location of the shortcut
+    path_2 = path_1.replace("\\", "/")
+    path_final = path_2 + '/Nmap - Zenmap GUI.lnk'
+    os.system('cls')
+    print("This is location of your file: ", path_final)
+    time.sleep(5)
+    os.system('cls')
+    print("When the window open make sure it is MAXIMIZED\nStay on the same the window")
+    time.sleep(2)
+    input("PRESS ENTER TO OPEN 'Nmap - Zenmap GUI'")
+    openfile(path_final)  # Nmap is opened
+    time.sleep(5)
+    pyautogui.hotkey('alt', 'tab', interval='0.5')
+    os.system('cls')
+    print("PLEASE SELECT YOUR TRIGGERS")
+    time.sleep(7)
+    os.system('cls')
+    pyautogui.hotkey('alt', 'tab', interval='0.5')
+    time.sleep(65)
+    pyautogui.hotkey('alt', 'tab', interval='0.5')
+    input("Press 'ENTER' to Continue")
+    os.system('cls')
+    os.system('cls')
+    num = int(input("Enter the Number of IP addresses: "))
+    ip_add = []
+    count = 0
+    while count <= (num - 1):
+        add = input(f"Input the IP Address #{count+1}: ")
+        ip_add.append(add)
+        count = count + 1
+        os.system('cls')
+    print(ip_add)
+    time.sleep(7)
+    cont = 0
+    presser = 1
+    checker = 1
+    pyautogui.hotkey('alt', 'tab', interval='0.5')
+    while cont <= (num - 1):
+        ip = ip_add[cont]
+        automate(ip, presser, checker)
+        cont = cont + 1
+        presser = presser + 2
+        checker = checker + 1
+
